@@ -36,7 +36,8 @@ export default function ContactForm({ onSubmit }) {
 					<form onSubmit={handelSubmit}>
 						<label>
 							<h2 className={css.title}>Name</h2>
-							<input
+						<input
+							className={css.inputForm}
 								id={nameId}
 								type="text"
 								value={state.name}
@@ -51,7 +52,8 @@ export default function ContactForm({ onSubmit }) {
 
 						<label>
 							<h2 className={css.title}>Number</h2>
-							<input
+						<input
+														className={css.inputForm}
 								id={numberId}
 								type="tel"
 								name="number"

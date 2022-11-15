@@ -8,10 +8,10 @@ import { fetchContacts } from 'redux/contacts/operations';
 import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts/api';
 
 //COMPONENTS
-import ContactForm from 'components/ContactForm';
-import ContactList from 'components/ContactList';
+import ContactForm from 'components/Contacts/ContactForm';
+import ContactList from 'components/Contacts/ContactList';
 import Filter from 'components/Filter';
-import Section from 'components/Section';
+import Section from './Section';
 
 export default function Contacts() {
   const [addContact] = useAddContactMutation();
