@@ -11,6 +11,7 @@ import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts/api';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
+import Section from 'components/Section';
 
 export default function Contacts() {
   const [addContact] = useAddContactMutation();
@@ -45,7 +46,7 @@ export default function Contacts() {
 
   const length = data.length;
   return (
-    <>
+    <Section>
       <ContactForm onSubmit={onAddContact} />
       <Filter onChangeFilter={onChangeFilter} filter={filter} />
       {isSuccess && length > 0 ? (
@@ -55,6 +56,6 @@ export default function Contacts() {
       )}
       {isLoading && <p>...loading</p>}
       {isError && <p>oops, something went wrong</p>}
-    </>
+    </Section>
   );
 }

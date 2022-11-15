@@ -1,11 +1,7 @@
 //COMPONENTS
-import Contacts from 'components/Contacts';
-import Section from 'components/Section';
-
+import UserRoutes from './UserRoutes'
 export default function App() {
   return (
-    <Section>
-   <Contacts/>
-    </Section>
+   <UserRoutes/>
   );
 }
