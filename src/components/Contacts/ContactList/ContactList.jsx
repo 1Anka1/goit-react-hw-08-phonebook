@@ -1,21 +1,30 @@
 import PropTypes from 'prop-types';
 import React from 'react'
-import { useRemoveContactMutation } from 'redux/contacts/api';
+import { useDispatch } from 'react-redux';
+
+// import { useRemoveContactMutation } from 'redux/contacts/api';
+// const [removeContact] = useRemoveContactMutation()
+
 import css from './ContactList.module.css'
+import { removeContact } from 'redux/contacts/operations';
 
 export default function ContactList({ items }) {
-  const [removeContact] = useRemoveContactMutation()
+  const dispatch = useDispatch();
 
-	const elem = items.map(({ name, number, id }) => {
+   const onRemoveBook = id => {
+        dispatch(removeContact(id));
+   };
+  
+  const elem = items.map(({ name, number, id }) => {
 		return (
       <li className={css.contactListItem } key={id}>
-        {name} : {number} <button className={ css.remoteBtn} onClick={() => removeContact(id)}>x</button>
+        {name} : {number} <button className={ css.remoteBtn} onClick={() => onRemoveBook(id)}>x</button>
 			</li>
 		)
 	})
 	return (
 		<div>
-			<ol>{elem}</ol>
+			<ol className={css.contactList}>{elem}</ol>
 		</div>
 	)
 }

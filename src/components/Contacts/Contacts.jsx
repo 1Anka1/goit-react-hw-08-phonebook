@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 //REDUX
 import { getFilter } from 'redux/filter/selectors';
 import { setFilter } from 'redux/filter/slice'
-import { fetchContacts } from 'redux/contacts/operations';
-import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts/api';
+import { fetchContacts, addContact } from 'redux/contacts/operations';
+import {getFiltredContacts, getState} from '../../redux/contacts/selectors'
+// import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts/api';
 
 //COMPONENTS
 import ContactForm from 'components/Contacts/ContactForm';
@@ -14,29 +15,22 @@ import Filter from 'components/Filter';
 import Section from './Section';
 
 export default function Contacts() {
-  const [addContact] = useAddContactMutation();
+  // const [addContact] = useAddContactMutation();
+  // const { data =[], isLoading, isSuccess, isError } = useGetContactsQuery();
 
-  const { data =[], isLoading, isSuccess, isError } = useGetContactsQuery();
+  const contacts = useSelector(getFiltredContacts)
+  const {loading, error} = useSelector(getState);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
-  const filteredContacts = () =>
-    data
-      .filter(
-        ({ name, number }) =>
-          name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-          number.includes(filter)
-      )
-      .sort((firstContact, secondContact) =>
-        firstContact.name.localeCompare(secondContact.name)
-     );
   
   useEffect(() => {
     dispatch(fetchContacts())
   }, [dispatch])
 
-  const onAddContact = contact => {
-    addContact(contact)
+  const onAddContact = data => {
+    const action = addContact(data)
+    dispatch(action)
   };
 
   const onChangeFilter = e => {
@@ -44,18 +38,19 @@ export default function Contacts() {
     dispatch(setFilter(value))
   };
 
-  const length = data.length;
+  const length = contacts.length;
+
   return (
     <Section>
       <ContactForm onSubmit={onAddContact} />
       <Filter onChangeFilter={onChangeFilter} filter={filter} />
-      {isSuccess && length > 0 ? (
-        <ContactList items={filteredContacts()} />
+      {!loading && length > 0 ? (
+        <ContactList items={contacts} />
       ) : (
         <p>Contact list is empty.</p>
       )}
-      {isLoading && <p>...loading</p>}
-      {isError && <p>oops, something went wrong</p>}
+      {loading && <p>...loading</p>}
+      {error && <p>oops, something went wrong</p>}
     </Section>
   );
 }

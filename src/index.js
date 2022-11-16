@@ -8,11 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter basename="goit-react-hw-08-phonebook">
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter basename="goit-react-hw-08-phonebook">
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>
+  // </React.StrictMode>
 );
