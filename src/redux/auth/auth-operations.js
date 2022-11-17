@@ -33,3 +33,34 @@ export const login = createAsyncThunk(
     }
   }
 );
+export const logout = createAsyncThunk(
+  'auth/logot',
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await api.logout();
+      return result;
+    } catch ({ response }) {
+      const error = {
+        status: response.status,
+        message: response.message,
+      };
+      rejectWithValue(error);
+    }
+  }
+);
+export const current = createAsyncThunk(
+  'auth/current',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { auth } = getState();
+      const result = await api.getCurrentUser(auth.token);
+      return result;
+    } catch ({ response }) {
+      const error = {
+        status: response.status,
+        message: response.message,
+      };
+      rejectWithValue(error);
+    }
+  }
+);

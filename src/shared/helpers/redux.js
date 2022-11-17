@@ -6,3 +6,9 @@ export const errorCallback = (store, { payload }) => {
   store.loading = false;
   store.error = payload;
 };
+export const fulfilledCallback = (store, { payload }) => {
+  store.loading = false;
+  store.user = payload.user;
+  store.token = payload.token;
+  store.isLogin = true;
+};

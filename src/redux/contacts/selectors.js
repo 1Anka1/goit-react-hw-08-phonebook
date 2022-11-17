@@ -18,9 +18,10 @@ export const getFiltredContacts = ({ contacts, filter }) => {
   return filtredContacts;
 };
 
-// export const filteredContacts = ({ data, filter }) =>
-//   data
-//     .filter(
+// export const filteredContacts = ({ contacts, filter }) =>
+
+//   contacts
+// .filter(
 //       ({ name, number }) =>
 //         name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
 //         number.includes(filter)
