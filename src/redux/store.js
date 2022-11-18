@@ -10,13 +10,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
 //REDUX
-
 import filterReducer from './filter/slice';
 import authReducer from './auth/auth-slice';
 import contactsReducer from './contacts/slice';
-// import contactsApi from './contacts/api';
 
 const persistConfig = {
   key: 'token',
