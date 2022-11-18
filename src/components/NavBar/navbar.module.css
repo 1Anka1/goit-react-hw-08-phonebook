@@ -12,10 +12,6 @@
   border: 1px solid green;
   background-color: #fff;
 }
-.row a:focus {
-  background-color: green;
-  color: #fff;
-}
 ol,
 ul {
   list-style: none;

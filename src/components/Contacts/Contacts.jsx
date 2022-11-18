@@ -6,7 +6,6 @@ import { getFilter } from 'redux/filter/selectors';
 import { setFilter } from 'redux/filter/slice'
 import { fetchContacts, addContact } from 'redux/contacts/operations';
 import {getFiltredContacts, getState} from '../../redux/contacts/selectors'
-// import { useGetContactsQuery, useAddContactMutation } from 'redux/contacts/api';
 
 //COMPONENTS
 import ContactForm from 'components/Contacts/ContactForm';
@@ -15,9 +14,6 @@ import Filter from 'components/Filter';
 import Section from './Section';
 
 export default function Contacts() {
-  // const [addContact] = useAddContactMutation();
-  // const { data =[], isLoading, isSuccess, isError } = useGetContactsQuery();
-
   const contacts = useSelector(getFiltredContacts)
   const {loading, error} = useSelector(getState);
   const filter = useSelector(getFilter);
@@ -49,8 +45,8 @@ export default function Contacts() {
       ) : (
         <p>Contact list is empty.</p>
       )}
-      {loading && <p>...loading</p>}
-      {error && <p>oops, something went wrong</p>}
+      {loading && <p>Loading...</p>}
+      {error && <p>Oops, something went wrong</p>}
     </Section>
   );
 }

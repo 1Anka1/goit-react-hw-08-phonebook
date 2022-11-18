@@ -5,7 +5,6 @@ import {
   errorCallback,
   fulfilledCallback,
 } from '../../shared/helpers/redux';
-
 const initialState = {
   user: {},
   token: '',

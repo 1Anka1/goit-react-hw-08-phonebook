@@ -5,19 +5,23 @@
   gap: 10px;
   margin-bottom: 15px;
 }
-
+form {
+}
 .field {
   padding: 10px 15px;
 }
 .btnForm {
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 0 10px;
+  width: 200px;
+  padding: 10px 0;
+  box-shadow: 0 0 20px rgba(10, 149, 40, 0.816);
+  transition: 0.4s;
 }
 .btnForm:hover {
   background-color: #45a049;
+  color: white;
 }

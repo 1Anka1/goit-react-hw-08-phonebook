@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
-// import { useRemoveContactMutation } from 'redux/contacts/api';
-// const [removeContact] = useRemoveContactMutation()
-
 import css from './ContactList.module.css'
 import { removeContact } from 'redux/contacts/operations';
 

@@ -17,15 +17,3 @@ export const getFiltredContacts = ({ contacts, filter }) => {
   });
   return filtredContacts;
 };
-
-// export const filteredContacts = ({ contacts, filter }) =>
-
-//   contacts
-// .filter(
-//       ({ name, number }) =>
-//         name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
-//         number.includes(filter)
-//     )
-//     .sort((firstContact, secondContact) =>
-//       firstContact.name.localeCompare(secondContact.name)
-//     );
