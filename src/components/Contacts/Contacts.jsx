@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
+import { Report } from 'notiflix/build/notiflix-report-aio';
 //REDUX
 import { getFilter } from 'redux/filter/selectors';
 import { setFilter } from 'redux/filter/slice'
@@ -19,12 +19,24 @@ export default function Contacts() {
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
+  const isDublicate = ({ name, number }, contacts) => {
+  const result = contacts.find(
+    item => item.name === name && item.number === number
+  );
+  return result;
+};
   
   useEffect(() => {
     dispatch(fetchContacts())
   }, [dispatch])
 
   const onAddContact = data => {
+    if (isDublicate(data, contacts)) {
+      return Report.warning(
+        'Warning',
+        `${data.name} with this phone number: ${data.number} is already in the contact list.`
+      );
+    }
     const action = addContact(data)
     dispatch(action)
   };

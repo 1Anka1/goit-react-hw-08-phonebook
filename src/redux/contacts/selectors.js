@@ -9,11 +9,14 @@ export const getFiltredContacts = ({ contacts, filter }) => {
   if (!filter) {
     return contacts.items;
   }
-  const normalisedFilter = filter.toLocaleLowerCase();
-  const filtredContacts = contacts.filter(({ name }) => {
-    const normalisedName = name.toLocaleLowerCase();
-    const result = normalisedName.includes(normalisedFilter);
-    return result;
+  const normalizedFilter = filter.toLowerCase();
+  const result = contacts.items.filter(({ name, number }) => {
+    const normalizedName = name.toLowerCase();
+    return (
+      normalizedName.includes(normalizedFilter) ||
+      number.includes(normalizedFilter)
+    );
   });
-  return filtredContacts;
+
+  return result;
 };

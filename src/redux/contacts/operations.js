@@ -1,13 +1,5 @@
 import * as api from 'shared/api/contacts';
-import { Report } from 'notiflix/build/notiflix-report-aio';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
-const isDublicate = ({ name, number }, contacts) => {
-  const result = contacts.find(
-    item => item.name === name && item.number === number
-  );
-  return result;
-};
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetch',
@@ -30,17 +22,6 @@ export const addContact = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error);
     }
-  },
-  {
-    condition: (data, { getState }) => {
-      const { contacts } = getState();
-      if (isDublicate(data, contacts.items)) {
-        return Report.warning(
-          'Warning',
-          'User is already in the contact list.'
-        );
-      }
-    },
   }
 );
 
